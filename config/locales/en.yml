@@ -11,6 +11,14 @@ en:
       blog: "Blog"
       donate_now: "DONATE NOW"
       search_holder: "Enter Your Search Word..."
+      phone: "05. 256. 8942"
+      email: "info@fundme.com"
+      home: "Home"
+      event: "Event"
+      blog: "Blog"
+      cause: "Cause"
+      contact: "Contact"
+      about: "About us"
     ggmap:
       geo_error: "Geocode was not successful for the following reason: "
 
@@ -125,3 +133,9 @@ en:
     title: "Donate Fundus"
     cause:
       error: "Cannot find this cause. Please try again!"
+
+  static_pages:
+    index:
+      home: "Home"
+      recent: "Recent Post"
+
