@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
+<<<<<<< HEAD
   before_action :authenticate_user!, except: %i{index show edit}
+=======
+  before_action :authenticate_user!, except: %i{show index}
+>>>>>>> Dialog form
   before_action :correct_user, only: %i{destroy}
   before_action :get_event, :get_attendance, only: %i{show}
   before_action :get_category, only: %i(index show)
@@ -8,6 +12,10 @@ class EventsController < ApplicationController
 
   def new
     @event = @cause.events.build
+    respond_to do |format|
+      format.html{}
+      format.js{}
+    end
   end
 
   def index
@@ -36,7 +44,7 @@ class EventsController < ApplicationController
       respond_to do |format|
         format.html{
           flash[:danger] = @event.errors
-          render :new
+          redirect_to get_cause
         }
         format.js{}
       end
@@ -79,7 +87,7 @@ class EventsController < ApplicationController
     @cause = Cause.find_by_slug(params[:cause_id]) || Cause.find_by(id: params[:cause_id])
     return if @cause
     flash[:danger] = t "cause.error.not_found"
-    respond_to causes_path
+    redirect_to causes_path
   end
 
   def correct_cause
