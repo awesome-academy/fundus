@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2019_10_26_075529) do
     t.text "content"
     t.text "photo", limit: 4294967295, collation: "utf8mb4_bin"
     t.bigint "category_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "cause_id"
@@ -34,10 +33,9 @@ ActiveRecord::Schema.define(version: 2019_10_26_075529) do
     t.datetime "deleted_at"
     t.index ["category_id"], name: "index_blogs_on_category_id"
     t.index ["cause_id"], name: "index_blogs_on_cause_id"
+    t.index ["created_at"], name: "index_blogs_on_created_at"
     t.index ["deleted_at"], name: "index_blogs_on_deleted_at"
     t.index ["slug"], name: "index_blogs_on_slug"
-    t.index ["user_id", "created_at"], name: "index_blogs_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
   create_table "blogs_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -146,7 +144,6 @@ ActiveRecord::Schema.define(version: 2019_10_26_075529) do
     t.text "photos", limit: 4294967295, collation: "utf8mb4_bin"
     t.text "geocode", limit: 4294967295, collation: "utf8mb4_bin"
     t.bigint "category_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "cause_id"
@@ -154,10 +151,9 @@ ActiveRecord::Schema.define(version: 2019_10_26_075529) do
     t.datetime "deleted_at"
     t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["cause_id"], name: "index_events_on_cause_id"
+    t.index ["created_at"], name: "index_events_on_created_at"
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
     t.index ["slug"], name: "index_events_on_slug"
-    t.index ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "events_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -230,7 +226,6 @@ ActiveRecord::Schema.define(version: 2019_10_26_075529) do
 
   add_foreign_key "blogs", "categories"
   add_foreign_key "blogs", "causes"
-  add_foreign_key "blogs", "users"
   add_foreign_key "blogs_tags", "blogs"
   add_foreign_key "blogs_tags", "tags"
   add_foreign_key "causes", "categories"
@@ -243,7 +238,6 @@ ActiveRecord::Schema.define(version: 2019_10_26_075529) do
   add_foreign_key "donations", "users"
   add_foreign_key "events", "categories"
   add_foreign_key "events", "causes"
-  add_foreign_key "events", "users"
   add_foreign_key "events_tags", "events"
   add_foreign_key "events_tags", "tags"
 end
